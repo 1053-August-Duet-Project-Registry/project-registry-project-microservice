@@ -48,7 +48,7 @@ stages:
     steps:
     - checkout: self
     - checkout: templates
-    - template: ./templates/analysis.yml@templates
+    - template: ./templates/analysis.mvn.yml@templates
       parameters:
         microservice: project-microservice
         workDir: ./project-registry-project-microservice/
@@ -69,7 +69,7 @@ stages:
   
   - job: dockerize
     steps:
-    - template: ./templates/dockerize.yml@templates
+    - template: ./templates/dockerize.mvn.yml@templates
       parameters:
         imageName: project-registry-project-microservice
         containerRepo: jpbulloch5
