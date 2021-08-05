@@ -36,6 +36,10 @@ public class Iteration {
     private String batchId;
 
     @ManyToOne
+    @JoinColumn(name = "phase")
+    private Phase phase;
+
+    @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
 }
