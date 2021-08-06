@@ -46,10 +46,7 @@ public class Project {
     @ManyToOne
     @JoinColumn(name = "owner")
     private Account owner;
-    
-    @ManyToOne
-    @JoinColumn(name = "phase")
-    private Phase phase;
+
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany()
