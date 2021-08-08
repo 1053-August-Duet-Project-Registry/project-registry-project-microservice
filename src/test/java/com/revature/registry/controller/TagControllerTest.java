@@ -39,7 +39,7 @@ import com.revature.registry.service.TagService;
 class TagControllerTest {
 
     private MockMvc mockMvc;
-    
+
     private ModelMapper modelMapper = new ModelMapper();
 
     @MockBean
@@ -91,7 +91,7 @@ class TagControllerTest {
         tag1.setName("Tester tag");
         tag1.setDescription("My purpose is to exist");
 
-        when(tagServ.createTag(tag1)).thenReturn("\"Success\"");
+        when(tagServ.createTag(tag1)).thenReturn(true);
 
         mockMvc.perform(post("/api/tag").contentType(MediaType.APPLICATION_JSON)
                 .content(new ObjectMapper().writeValueAsString(tag1))).andExpect(status().isOk());
@@ -111,12 +111,12 @@ class TagControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(50))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("My purpose is to exist"));
     }
-    
+
     @Test
     void convertToEntityTest() {
         TagDTO tagDto = new TagDTO();
         tagDto.setName("test");
-        
+
         Tag tag = modelMapper.map(tagDto, Tag.class);
         assertEquals(tagDto.getId(),tag.getId());
         assertEquals(tagDto.getName(),tag.getName());

@@ -62,7 +62,7 @@ class TagServiceTest {
 
     @Test
     void testCreateTagReturnString() {
-        assertThat(tagService.createTag(tag2)).isEqualTo("\"Success\"");
+        assertThat(tagService.createTag(tag2)).isEqualTo(true);
     }
 
 }

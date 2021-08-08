@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TagController {
 
     private TagService tServ;
-    
+
     @Autowired
     private ModelMapper modelMapper;
 
@@ -45,10 +45,10 @@ public class TagController {
     @PostMapping("")
     public ResponseEntity<String> createTag(@RequestBody TagDTO tagDto) {
         Tag tag = convertToEntity(tagDto);
-        
-        String newTag = tServ.createTag(tag);
 
-        return new ResponseEntity<>(newTag, HttpStatus.OK);
+        Boolean result = tServ.createTag(tag);
+        String msg = Boolean.TRUE.equals(result) ? "Success" : "Create Tag failed!";
+        return new ResponseEntity<>(msg, HttpStatus.OK);
     }
 
     @GetMapping("/id/{id}")
@@ -56,7 +56,7 @@ public class TagController {
         Tag tagId = tServ.getTagById(id);
         return new ResponseEntity<>(tagId, HttpStatus.OK);
     }
-    
+
     private Tag convertToEntity(TagDTO tagDto) throws ParseException {
         return modelMapper.map(tagDto, Tag.class);
 
