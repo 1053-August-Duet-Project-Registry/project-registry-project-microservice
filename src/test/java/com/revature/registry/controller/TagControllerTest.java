@@ -88,7 +88,7 @@ class TagControllerTest {
         tag1.setName("Tester tag");
         tag1.setDescription("My purpose is to exist");
 
-        when(tagServ.createTag(tag1)).thenReturn(true);
+        when(tagServ.createTag(tag1)).thenReturn(tag1);
 
         mockMvc.perform(post("/api/tag").contentType(MediaType.APPLICATION_JSON)
                 .content(new ObjectMapper().writeValueAsString(tag1))).andExpect(status().isOk());

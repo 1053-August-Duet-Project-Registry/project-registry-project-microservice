@@ -29,8 +29,7 @@ public class TagService {
         return tRepo.findById(id).orElse(null);
     }
 
-    public Boolean createTag(Tag tag) {
-        Tag savedTag = tRepo.save(tag);
-        return savedTag.getId() != 0;
+    public Tag createTag(Tag tag) {
+        return tRepo.save(tag);
     }
 }

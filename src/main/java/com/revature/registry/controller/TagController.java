@@ -43,12 +43,11 @@ public class TagController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> createTag(@RequestBody TagDTO tagDto) {
+    public ResponseEntity<Tag> createTag(@RequestBody TagDTO tagDto) {
         Tag tag = convertToEntity(tagDto);
 
-        Boolean result = tServ.createTag(tag);
-        String msg = Boolean.TRUE.equals(result) ? "Success" : "Create Tag failed!";
-        return new ResponseEntity<>(msg, HttpStatus.OK);
+        Tag createdTag = tServ.createTag(tag);
+        return new ResponseEntity<>(createdTag, HttpStatus.OK);
     }
 
     @GetMapping("/id/{id}")
