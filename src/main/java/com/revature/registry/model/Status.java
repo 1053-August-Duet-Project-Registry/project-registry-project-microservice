@@ -15,6 +15,9 @@ import lombok.Data;
  *     <li>ACTIVE</li>
  *     <li>NEEDS_ATTENTION</li>
  *     <li>ARCHIVED</li>
+ *
+ *
+ *     AS of 7/30/21, new statuses are 'AVAILABLE' and 'PLANNED'
  *  </ol>
  */
 
