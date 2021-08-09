@@ -115,7 +115,6 @@ class TagControllerTest {
         tagDto.setName("test");
 
         Tag tag = modelMapper.map(tagDto, Tag.class);
-        assertEquals(tagDto.getId(),tag.getId());
         assertEquals(tagDto.getName(),tag.getName());
 
     }
