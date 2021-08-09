@@ -6,7 +6,8 @@ insert into account(username, role_id) values('william', 1);
 insert into account(username, role_id) values('kenny', 1);
 insert into account(username, role_id) values('william', 1);
 insert into account(username, role_id) values('Bob', 2);
--- insert statuses
+
+-- insert statuses EDIT: added planned and available to mock db
 insert into status(name) values ('IN_ITERATION');
 insert into status(name) values ('CODE_FREEZE');
 insert into status(name) values ('CODE_REVIEW');
@@ -15,6 +16,9 @@ insert into status(name) values ('READY_FOR_ITERATION');
 insert into status(name) values ('ACTIVE');
 insert into status(name) values ('NEEDS_ATTENTION');
 insert into status(name) values ('ARCHIVED');
+insert into status(name) values ('PLANNED');
+insert into status(name) values ('AVAILABLE');
+
 -- insert phase
 insert into phase (kind, description) values ('BACKLOG_GENERATED', 'CoE has completed the iterations backlog, awaiting trainer approval');
 insert into phase (kind, description) values ('TRAINER_APPROVED', 'Trainer has reviewed backlog and approves of scope and domain');
