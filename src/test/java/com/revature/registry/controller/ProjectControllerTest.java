@@ -2,7 +2,6 @@ package com.revature.registry.controller;
 
 import static org.hamcrest.CoreMatchers.isA;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -13,8 +12,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.LinkedList;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.registry.ProjectMicroServiceApplication;
+import com.revature.registry.model.Project;
+import com.revature.registry.model.dto.ProjectDTO;
+import com.revature.registry.service.ProjectService;
+
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.modelmapper.ModelMapper;
@@ -25,12 +29,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.registry.ProjectMicroServiceApplication;
-import com.revature.registry.model.Project;
-import com.revature.registry.model.dto.ProjectDTO;
-import com.revature.registry.service.ProjectService;
 
 @SpringBootTest(classes = ProjectMicroServiceApplication.class)
 public class ProjectControllerTest {

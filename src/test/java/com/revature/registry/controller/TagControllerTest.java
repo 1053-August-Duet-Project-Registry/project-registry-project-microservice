@@ -10,6 +10,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.registry.ProjectMicroServiceApplication;
+import com.revature.registry.model.Tag;
+import com.revature.registry.model.dto.TagDTO;
+import com.revature.registry.service.TagService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,20 +24,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.registry.ProjectMicroServiceApplication;
-import com.revature.registry.model.Project;
-import com.revature.registry.model.Tag;
-import com.revature.registry.model.dto.ProjectDTO;
-import com.revature.registry.model.dto.TagDTO;
-import com.revature.registry.service.TagService;
 
 @SpringBootTest(classes = ProjectMicroServiceApplication.class)
 @ExtendWith(SpringExtension.class)
