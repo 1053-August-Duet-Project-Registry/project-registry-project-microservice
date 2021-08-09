@@ -1,6 +1,7 @@
 package com.revature.registry.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.LinkedList;
@@ -62,7 +63,7 @@ class TagServiceTest {
 
     @Test
     void testCreateTagReturnString() {
-        assertThat(tagService.createTag(tag2)).isEqualTo("\"Success\"");
+        assertTrue(tagService.createTag(tag2));
     }
 
 }

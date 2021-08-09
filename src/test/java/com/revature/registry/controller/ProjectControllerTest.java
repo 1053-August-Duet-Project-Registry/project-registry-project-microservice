@@ -2,7 +2,6 @@ package com.revature.registry.controller;
 
 import static org.hamcrest.CoreMatchers.isA;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -13,8 +12,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.LinkedList;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.registry.ProjectMicroServiceApplication;
+import com.revature.registry.model.Project;
+import com.revature.registry.model.dto.ProjectDTO;
+import com.revature.registry.service.ProjectService;
+
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.modelmapper.ModelMapper;
@@ -25,12 +29,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.registry.ProjectMicroServiceApplication;
-import com.revature.registry.model.Project;
-import com.revature.registry.model.dto.ProjectDTO;
-import com.revature.registry.service.ProjectService;
 
 @SpringBootTest(classes = ProjectMicroServiceApplication.class)
 public class ProjectControllerTest {
@@ -87,8 +85,6 @@ public class ProjectControllerTest {
 	@Test
 	public void testCreateProject() throws Exception {
 		Project pCreate = new Project();
-		pCreate.setId(103);
-
 		when(projectService.createProject(pCreate)).thenReturn(pCreate);
 
 		mockMvc.perform(post("/api/project/").contentType(MediaType.APPLICATION_JSON)
@@ -110,20 +106,17 @@ public class ProjectControllerTest {
 		projectDto.setName("test");
 
 		Project project = modelMapper.map(projectDto, Project.class);
-		assertEquals(projectDto.getId(), project.getId());
 		assertEquals(projectDto.getName(), project.getName());
 
 	}
 
 	@Test
-	@Disabled
 	public void testDeleteProject() throws Exception {
 		Project pDelete = new Project();
 		pDelete.setId(104);
-
-		doNothing().when(projectService).deleteProjectById(104);
+		when(projectService.deleteProjectById(pDelete.getId())).thenReturn(true);
 
 		mockMvc.perform(delete("/api/project/id/" + pDelete.getId()).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk());
+				.andExpect(status().isNoContent());
 	}
 }

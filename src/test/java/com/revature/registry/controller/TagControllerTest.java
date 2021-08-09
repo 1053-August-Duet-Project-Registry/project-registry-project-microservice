@@ -10,6 +10,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.registry.ProjectMicroServiceApplication;
+import com.revature.registry.model.Tag;
+import com.revature.registry.model.dto.TagDTO;
+import com.revature.registry.service.TagService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,20 +24,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.registry.ProjectMicroServiceApplication;
-import com.revature.registry.model.Project;
-import com.revature.registry.model.Tag;
-import com.revature.registry.model.dto.ProjectDTO;
-import com.revature.registry.model.dto.TagDTO;
-import com.revature.registry.service.TagService;
 
 @SpringBootTest(classes = ProjectMicroServiceApplication.class)
 @ExtendWith(SpringExtension.class)
@@ -39,7 +36,7 @@ import com.revature.registry.service.TagService;
 class TagControllerTest {
 
     private MockMvc mockMvc;
-    
+
     private ModelMapper modelMapper = new ModelMapper();
 
     @MockBean
@@ -91,7 +88,7 @@ class TagControllerTest {
         tag1.setName("Tester tag");
         tag1.setDescription("My purpose is to exist");
 
-        when(tagServ.createTag(tag1)).thenReturn("\"Success\"");
+        when(tagServ.createTag(tag1)).thenReturn(true);
 
         mockMvc.perform(post("/api/tag").contentType(MediaType.APPLICATION_JSON)
                 .content(new ObjectMapper().writeValueAsString(tag1))).andExpect(status().isOk());
@@ -111,14 +108,13 @@ class TagControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(50))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("My purpose is to exist"));
     }
-    
+
     @Test
     void convertToEntityTest() {
         TagDTO tagDto = new TagDTO();
         tagDto.setName("test");
-        
+
         Tag tag = modelMapper.map(tagDto, Tag.class);
-        assertEquals(tagDto.getId(),tag.getId());
         assertEquals(tagDto.getName(),tag.getName());
 
     }
