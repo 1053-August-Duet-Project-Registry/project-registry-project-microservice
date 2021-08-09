@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.isA;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -107,6 +108,22 @@ class TagControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Tester tag"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(50))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("My purpose is to exist"));
+    }
+
+    @Test
+    void enableTagTest() throws Exception {
+        Tag tag1 = new Tag();
+        tag1.setId(50);
+        when(tagServ.enableTag(tag1.getId())).thenReturn(tag1);
+        mockMvc.perform(put("/api/tag/id/" + tag1.getId() + "/enable")).andExpect(status().isOk());
+    }
+
+    @Test
+    void disableTagTest() throws Exception {
+        Tag tag1 = new Tag();
+        tag1.setId(50);
+        when(tagServ.disableTag(tag1.getId())).thenReturn(tag1);
+        mockMvc.perform(put("/api/tag/id/" + tag1.getId() + "/disable")).andExpect(status().isOk());
     }
 
     @Test

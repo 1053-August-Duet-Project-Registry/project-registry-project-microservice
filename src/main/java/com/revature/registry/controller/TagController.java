@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,6 +55,18 @@ public class TagController {
     public ResponseEntity<Tag> getTagById(@PathVariable("id") int id) {
         Tag tagId = tServ.getTagById(id);
         return new ResponseEntity<>(tagId, HttpStatus.OK);
+    }
+
+    @PutMapping("/id/{id}/enable")
+    public ResponseEntity<Tag> enableTag(@PathVariable("id") int id) {
+        Tag tag = tServ.enableTag(id);
+        return new ResponseEntity<>(tag, HttpStatus.OK);
+    }
+
+    @PutMapping("/id/{id}/disable")
+    public ResponseEntity<Tag> disableTag(@PathVariable("id") int id) {
+        Tag tag = tServ.disableTag(id);
+        return new ResponseEntity<>(tag, HttpStatus.OK);
     }
 
     private Tag convertToEntity(TagDTO tagDto) throws ParseException {
