@@ -110,7 +110,6 @@ public class ProjectControllerTest {
 		projectDto.setName("test");
 
 		Project project = modelMapper.map(projectDto, Project.class);
-		assertEquals(projectDto.getId(), project.getId());
 		assertEquals(projectDto.getName(), project.getName());
 
 	}

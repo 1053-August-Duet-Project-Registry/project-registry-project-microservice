@@ -11,16 +11,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProjectService {
-    private ProjectRepository pRepo;
-
-    public ProjectService() {
-
-    }
-
     @Autowired
-    public ProjectService(ProjectRepository pRepo) {
-        this.pRepo = pRepo;
-    }
+    private ProjectRepository pRepo;
 
     public List<Project> getAllProjects() {
         return pRepo.findAll();
@@ -31,16 +23,14 @@ public class ProjectService {
     }
 
     public Project createProject(Project project) {
-        Project savedProject = pRepo.save(project);
-        return savedProject;
+        return pRepo.save(project);
     }
 
     public Project updateProjectById(int id, Project newProject) {
         Optional<Project> project = pRepo.findById(id);
         if (project.isPresent()) {
             newProject.setId(id);
-            pRepo.save(newProject);
-            return project.get();
+            return pRepo.save(newProject);
         }
         return null;
     }
