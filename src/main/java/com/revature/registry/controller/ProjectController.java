@@ -70,7 +70,7 @@ public class ProjectController {
     }
 
     @DeleteMapping("id/{id}")
-    public ResponseEntity<Project> deleteUser(@PathVariable("id") int id) {
+    public ResponseEntity<Project> deleteProject(@PathVariable("id") int id) {
         if (pServ.deleteProjectById(id)) {
             return ResponseEntity.noContent().build();
         } else {

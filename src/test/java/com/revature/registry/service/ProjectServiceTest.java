@@ -41,6 +41,7 @@ class ProjectServiceTest {
         when(projectRepository.findAll()).thenReturn(projectList);
         when(projectRepository.findById(project1.getId())).thenReturn(Optional.ofNullable(project1));
         when(projectRepository.save(project2)).thenReturn(project2);
+        when(projectRepository.save(project1)).thenReturn(project1);
     }
 
     @Test

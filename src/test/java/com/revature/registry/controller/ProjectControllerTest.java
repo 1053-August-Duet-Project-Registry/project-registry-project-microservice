@@ -87,8 +87,6 @@ public class ProjectControllerTest {
 	@Test
 	public void testCreateProject() throws Exception {
 		Project pCreate = new Project();
-		pCreate.setId(103);
-
 		when(projectService.createProject(pCreate)).thenReturn(pCreate);
 
 		mockMvc.perform(post("/api/project/").contentType(MediaType.APPLICATION_JSON)
@@ -115,14 +113,12 @@ public class ProjectControllerTest {
 	}
 
 	@Test
-	@Disabled
 	public void testDeleteProject() throws Exception {
 		Project pDelete = new Project();
 		pDelete.setId(104);
-
-		doNothing().when(projectService).deleteProjectById(104);
+		when(projectService.deleteProjectById(pDelete.getId())).thenReturn(true);
 
 		mockMvc.perform(delete("/api/project/id/" + pDelete.getId()).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk());
+				.andExpect(status().isNoContent());
 	}
 }
