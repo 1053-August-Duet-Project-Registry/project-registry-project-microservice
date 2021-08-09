@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @SpringBootTest(classes = ProjectMicroServiceApplication.class)
-public class ProjectTagControllerTest {
+class ProjectTagControllerTest {
 
     private MockMvc mockMvc;
 
@@ -45,7 +45,7 @@ public class ProjectTagControllerTest {
     }
 
     @Test
-    public void testAddRemoveTagsToProject() throws Exception {
+    void testAddRemoveTagsToProject() throws Exception {
         List<Integer> tagIDs = Arrays.asList(1, 2);
         when(projectTagService.addTagsToProject(p1.getId(), tagIDs)).thenReturn(p1);
         when(projectTagService.removeTagsFromProject(p1.getId(), tagIDs)).thenReturn(p1);

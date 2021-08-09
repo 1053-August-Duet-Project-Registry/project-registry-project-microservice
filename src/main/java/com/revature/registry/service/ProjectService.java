@@ -35,7 +35,7 @@ public class ProjectService {
         return null;
     }
 
-    public Boolean deleteProjectById(int id) {
+    public boolean deleteProjectById(int id) {
         Optional<Project> project = pRepo.findById(id);
         if (project.isPresent()) {
             pRepo.deleteById(id);

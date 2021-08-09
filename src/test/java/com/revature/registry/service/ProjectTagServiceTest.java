@@ -60,8 +60,8 @@ class ProjectTagServiceTest {
     void testAddRemoveTagsToProject() {
         Project p;
         p = projectTagService.addTagsToProject(project1.getId(), Arrays.asList(1, 2));
-        assertEquals(p.getTags().size(), 3);
+        assertEquals(3, p.getTags().size());
         p = projectTagService.removeTagsFromProject(project1.getId(), Arrays.asList(1, 2));
-        assertEquals(p.getTags().size(), 1);
+        assertEquals(1, p.getTags().size());
     }
 }
