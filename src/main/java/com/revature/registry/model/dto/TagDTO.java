@@ -10,4 +10,5 @@ public class TagDTO {
 
     private String description;
 
+    private boolean isEnabled;
 }
