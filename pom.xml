@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.revature</groupId>
 	<artifactId>project-registry-project-microservice</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>project-registry-project-microservice</name>
 	<description>Project Mircoservice for Backend Repository</description>
 
