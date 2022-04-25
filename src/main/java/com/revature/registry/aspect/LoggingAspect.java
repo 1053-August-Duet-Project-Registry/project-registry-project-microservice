@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
-@EnableAspectJAutoProxy
+@EnableAspectJAutoProxygit
 public class LoggingAspect {
 
 	final static Logger LOG = Logger.getLogger(LoggingAspect.class);
